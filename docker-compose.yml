@@ -6,10 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: laravel_app
-    volumes:
-      - .:/var/www/html/tpfull
-      - ./storage:/var/www/html/tpfull/storage
-      - ./bootstrap/cache:/var/www/html/tpfull/bootstrap/cache
     ports:
       - "9000:9000"
     environment:

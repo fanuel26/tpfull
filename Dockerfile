@@ -18,7 +18,7 @@ WORKDIR /var/www/html/tpfull
 COPY . /var/www/html/tpfull
 
 # Étape 6 : Configurer les permissions
-RUN chown -R www-data:www-data /var/www/html/tpfull/storage /var/www/html/tpfull/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/tpfull/bootstrap/cache
 
 # Étape 7 : Installer les dépendances Laravel
 RUN composer install --no-dev --optimize-autoloader
