@@ -29,7 +29,7 @@
             <form action="{{ url('save_service') }}" method="post">
                 @csrf
                 <div class="row">
-                    <input type="hidden" name="service" :value="$id">
+                    <input type="hidden" name="service" value="{{ $id }}">
                     <div class="col-md-6">
                         <div class="form-group my-3">
                             <label>Civilité</label>
