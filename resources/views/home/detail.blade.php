@@ -10,9 +10,9 @@
         </div>
         <div class="col-md-8 offset-md-2">
 
-            @if ($success)
-            <div class="alert alert-success" role="alert">
-                <strong>{{ $success }}</strong>
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
             @endif
 
@@ -29,10 +29,11 @@
             <form action="{{ url('save_service') }}" method="post">
                 @csrf
                 <div class="row">
+                    <input type="hidden" name="civilite" :value="$id">
                     <div class="col-md-6">
                         <div class="form-group my-3">
                             <label>Civilité</label>
-                            <select type="text" class="form-control form-control-lg" name="civilité">
+                            <select type="text" class="form-control form-control-lg" name="civilite">
                                 <option value="Monsieur">Monsieur</option>
                                 <option value="Madame">Madame</option>
                             </select>

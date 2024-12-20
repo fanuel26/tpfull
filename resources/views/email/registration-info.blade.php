@@ -20,6 +20,7 @@
             <h1>Informations d'enregistrement</h1>
         </div>
         <div class="content">
+            <p><span class="label">Civilité :</span> {{ $data['civilite'] }}</p>
             <p><span class="label">Nom :</span> {{ $data['nom'] }}</p>
             <p><span class="label">Date :</span> {{ $data['date'] }}</p>
             <p><span class="label">Téléphone :</span> {{ $data['telephone'] }}</p>

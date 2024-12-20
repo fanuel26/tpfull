@@ -33,6 +33,7 @@ class homeController extends Controller
     {
         //
         $validatedData = $request->validate([
+            'civilite' => 'required|string|max:255',
             'nom' => 'required|string|max:255',
             'date' => 'required|date',
             'telephone' => 'required|string|regex:/^\+?[0-9]{10,15}$/',
