@@ -12,13 +12,13 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 
 # Étape 4 : Configurer le répertoire de travail
-WORKDIR /var/www/html
+WORKDIR /var/www/html/tpfull
 
 # Étape 5 : Copier le projet Laravel dans le conteneur
-COPY . /var/www/html
+COPY . /var/www/html/tpfull
 
 # Étape 6 : Configurer les permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/tpfull/storage /var/www/html/tpfull/bootstrap/cache
 
 # Étape 7 : Installer les dépendances Laravel
 RUN composer install --no-dev --optimize-autoloader
