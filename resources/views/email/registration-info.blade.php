@@ -20,6 +20,7 @@
             <h1>Informations d'enregistrement</h1>
         </div>
         <div class="content">
+            <p><span class="label">Service :</span> {{ $data['service'] }}</p>
             <p><span class="label">Civilité :</span> {{ $data['civilite'] }}</p>
             <p><span class="label">Nom :</span> {{ $data['nom'] }}</p>
             <p><span class="label">Date :</span> {{ $data['date'] }}</p>
@@ -33,7 +34,7 @@
             <p><span class="label">Certifié majeur :</span> {{ $data['certifie_majeur'] ? 'Oui' : 'Non' }}</p>
         </div>
         <div class="footer">
-            <p>&copy; {{ date('Y') }} Votre entreprise. Tous droits réservés.</p>
+            <p>&copy; {{ date('Y') }} Trois Puissqnces. Tous droits réservés.</p>
         </div>
     </div>
 </body>
