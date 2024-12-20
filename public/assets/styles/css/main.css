@@ -176,7 +176,9 @@ body::-webkit-scrollbar-thumb:hover {
   padding-bottom: 5px;
   padding-left: 30px !important;
   padding-right: 30px !important;
-  font-family: "Time New Roman", sans-serif;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
 }
 .btn.btn-tran {
   width: 40px !important;
@@ -190,7 +192,6 @@ body::-webkit-scrollbar-thumb:hover {
   border-color: #8d4e56;
   border-radius: 0px;
   color: #fff !important;
-  font-weight: 600;
   transition: all ease-in-out 0.5s;
 }
 .btn.btn-primary:hover {
@@ -203,7 +204,6 @@ body::-webkit-scrollbar-thumb:hover {
   border-color: #fff;
   border-radius: 0px;
   color: #8d4e56 !important;
-  font-weight: 600;
   transition: all ease-in-out 0.5s;
 }
 .btn.btn-light:hover {
