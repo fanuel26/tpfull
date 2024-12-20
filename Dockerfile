@@ -1,30 +1,35 @@
-# Étape 1 : Utiliser une image PHP avec les extensions nécessaires
-FROM php:8.3-fpm
+# Use the official PHP image as the base
+FROM php:8.1-fpm
 
-# Étape 2 : Installer les dépendances nécessaires
+# Set the working directory inside the container
+WORKDIR /var/www
+
+# Install dependencies and utilities
 RUN apt-get update && apt-get install -y \
-    libzip-dev zip unzip git curl libpng-dev libonig-dev \
-    libpq-dev libxml2-dev libssl-dev && \
-    docker-php-ext-install pdo_mysql pdo_pgsql mbstring zip gd xml bcmath && \
-    pecl install redis && docker-php-ext-enable redis
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    git \
+    unzip \
+    libxml2-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql xml
 
-# Étape 3 : Installer Composer
-COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Étape 4 : Configurer le répertoire de travail
-WORKDIR /var/www/html/tpfull
+# Copy the application files into the container
+COPY . .
 
-# Étape 5 : Copier le projet Laravel dans le conteneur
-COPY . /var/www/html/tpfull
-
-# Étape 6 : Configurer les permissions
-RUN chown -R www-data:www-data /var/www/html/tpfull/bootstrap/cache
-
-# Étape 7 : Installer les dépendances Laravel
+# Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Étape 8 : Exposer le port PHP
+# Set appropriate file permissions for the Laravel project
+RUN chown -R www-data:www-data /var/www && chmod -R 775 /var/www/storage
+
+# Expose port 9000 to communicate with NGINX
 EXPOSE 9000
 
-# Étape 9 : Commande par défaut pour PHP-FPM
+# Command to run PHP-FPM
 CMD ["php-fpm"]

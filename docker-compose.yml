@@ -1,47 +1,50 @@
 version: '3.8'
 
 services:
-  app:
+  # PHP service with FPM
+  php:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel_app
-    ports:
-      - "9000:9000"
-    environment:
-      APP_ENV: local
-      APP_DEBUG: 'true'
-      APP_KEY: base64:key-here
-      DB_CONNECTION: mysql
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_DATABASE: laravel
-      DB_USERNAME: root
-      DB_PASSWORD: root
-
-  # webserver:
-  #   image: nginx:latest
-  #   container_name: laravel_nginx
-  #   ports:
-  #     - "80:80"
-  #   volumes:
-  #     - .:/var/www/html/tpfull
-  #     - ./nginx:/etc/nginx/conf.d
-  #   depends_on:
-  #     - app
-
-  db:
-    image: mysql:8.0
-    container_name: laravel_db
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_ROOT_PASSWORD: root
+    container_name: php-fpm
     volumes:
-      - dbdata:/var/lib/mysql
+      - .:/var/www
+    networks:
+      - app-network
+
+  # NGINX service
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - .:/var/www
+      - ./certs:/etc/ssl
+    depends_on:
+      - php
+    networks:
+      - app-network
+
+  # MySQL service (if needed for your Laravel app)
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
 
 volumes:
-  dbdata:
+  mysql_data:
+  
+networks:
+  app-network:
+    driver: bridge
