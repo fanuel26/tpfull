@@ -46,7 +46,7 @@ class homeController extends Controller
             'certifie_majeur' => 'accepted', // Valide uniquement si la case est cochée
         ]);
 
-        Mail::to("fanuelperse@gmail.com")->send(new RegistrationInfoMail($validatedData));
+        Mail::to("contact@a07.agency")->send(new RegistrationInfoMail($validatedData));
 
         return back()->with('success', 'Formulaire soumis avec succès et e-mail envoyé!');
     }
