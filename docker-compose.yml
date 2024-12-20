@@ -6,9 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php-fpm
-    volumes:
-      - .:/var/www
+    container_name: php-FPM
     networks:
       - app-network
 
