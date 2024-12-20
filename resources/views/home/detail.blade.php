@@ -9,6 +9,13 @@
             </h1>
         </div>
         <div class="col-md-8 offset-md-2">
+
+            @if ($success)
+            <div class="alert alert-success" role="alert">
+                <strong>{{ $success }}</strong>
+            </div>
+            @endif
+
             @if ($errors->any())
             <div style="color: red;">
                 <ul>
@@ -37,9 +44,9 @@
                             <label>Nom & Prénoms</label>
                             <input type="text" name="nom" value="{{ old('nom') }}" class="form-control form-control-lg"
                                 placeholder="Votre nom et prénom">
-                                @error('nom')
-                                <div style="color: red;">{{ $message }}</div>
-                                @enderror
+                            @error('nom')
+                            <div style="color: red;">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 my-3">
@@ -47,9 +54,9 @@
                             <label>Date de naissance</label>
                             <input type="date" name="date" value="{{ old('date') }}"
                                 class="form-control form-control-lg">
-                                @error('date')
-                                <div style="color: red;">{{ $message }}</div>
-                                @enderror
+                            @error('date')
+                            <div style="color: red;">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 my-3">
@@ -57,9 +64,9 @@
                             <label>N° de téléphone</label>
                             <input type="tel" name="telephone" value="{{ old('telephone') }}"
                                 class="form-control form-control-lg" placeholder="Numero de téléphone">
-                                @error('telephone')
-                                <div style="color: red;">{{ $message }}</div>
-                                @enderror
+                            @error('telephone')
+                            <div style="color: red;">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 my-3">
@@ -67,9 +74,9 @@
                             <label>Adresse email</label>
                             <input type="text" name="email" value="{{ old('email') }}"
                                 class="form-control form-control-lg" placeholder="Email">
-                                @error('email')
-                                <div style="color: red;">{{ $message }}</div>
-                                @enderror
+                            @error('email')
+                            <div style="color: red;">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 my-3">
@@ -77,7 +84,7 @@
                             <label>Secteur d'activité</label>
                             <input type="text" name="secteur_activite" value="{{ old('secteur_activite') }}"
                                 class="form-control form-control-lg" placeholder="Votre secteur">
-                                
+
                             @error('secteur_activite')
                             <div style="color: red;">{{ $message }}</div>
                             @enderror
@@ -88,7 +95,7 @@
                             <label>Code postal</label>
                             <input type="text" name="code_postal" value="{{ old('code_postal') }}"
                                 class="form-control form-control-lg" placeholder="Votre code postal">
-                                
+
                             @error('code_postal')
                             <div style="color: red;">{{ $message }}</div>
                             @enderror
@@ -99,7 +106,7 @@
                             <label>Ville</label>
                             <input type="text" name="ville" value="{{ old('ville') }}"
                                 class="form-control form-control-lg" placeholder="Votre ville">
-                                
+
                             @error('ville')
                             <div style="color: red;">{{ $message }}</div>
                             @enderror
@@ -110,7 +117,7 @@
                             <label>Pays</label>
                             <input type="text" name="pays" value="{{ old('pays') }}"
                                 class="form-control form-control-lg" placeholder="Votre pays">
-                                
+
                             @error('pays')
                             <div style="color: red;">{{ $message }}</div>
                             @enderror
@@ -122,7 +129,7 @@
                             <textarea type="text" name="commentaire" value="{{ old('commentaire') }}"
                                 class="form-control form-control-lg" rows="5"
                                 placeholder="Votre commentaire"></textarea>
-                                
+
                             @error('commentaire')
                             <div style="color: red;">{{ $message }}</div>
                             @enderror
